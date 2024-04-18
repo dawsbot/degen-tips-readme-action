@@ -57,7 +57,10 @@ jobs:
         id: test-action
         uses: ./
         with:
-          milliseconds: 2000
+          PAT: ${{ secrets.PAT }}
+          FARCASTER_USERNAME: ${{ secrets.FARCASTER_USERNAME }}
+          NEYNAR_API_KEY: ${{ secrets.NEYNAR_API_KEY }}
+          DUNE_API_KEY: ${{ secrets.DUNE_API_KEY }}
 
       - name: Print Output
         id: output

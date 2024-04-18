@@ -1,19 +1,22 @@
 # DEGEN Tips Readme Action
 
+> Add this to any repo you want to thank you DEGEN sponsors from Farcaster! It looks like this 👇
+
+<!-- replace-degen-sponsors --><!-- replace-degen-sponsors -->
+
 #### Required Setup
 
 The following options must be configured.
 
-| Key     | Value Information                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Type   | Required |
-| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------- |
-| `token` | You must provide the action with a Personal Access Token (PAT) with the `read:user` and `read:org` permission scope and store it in the `secrets / with` menu **as a secret**. This should be generated from the account or organization that receives sponsorship, and depending on your use case you may need to provide additional scopes. [Learn more about creating and using encrypted secrets here](https://docs.github.com/en/actions/reference/encrypted-secrets). | `with` | **Yes**  |
+| Key   | Value Information                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Type   | Required |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------- |
+| `PAT` | You must provide the action with a Personal Access Token (PAT) with the `read:user` and `read:org` permission scope and store it in the `secrets / with` menu **as a secret**. This should be generated from the account or organization that receives sponsorship, and depending on your use case you may need to provide additional scopes. [Learn more about creating and using encrypted secrets here](https://docs.github.com/en/actions/reference/encrypted-secrets). | `with` | **Yes**  |
 
 #### Optional Choices
 
-| Key       | Value Information                                                                                                                                                                                                    | Type   | Required |
-| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------- |
-| `file`    | This should point to the file that you're generating, for example `README.md` or `path/to/CREDITS.md`. Defaults to `README.md` if no value is provided.                                                              | `with` | **Yes**  |
-| `minimum` | Using this input you can set the minimum sponsorship threshold. For example setting this to `500` will only display sponsors who give of `$5 USD` and more. By default the action will display all of your sponsors. | `with` | **No**   |
+| Key    | Value Information                                                                                                                                       | Type   | Required |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------- |
+| `file` | This should point to the file that you're generating, for example `README.md` or `path/to/CREDITS.md`. Defaults to `README.md` if no value is provided. | `with` | **Yes**  |
 
 ## Contributing
 
@@ -63,14 +66,14 @@ There are a few things to keep in mind when writing your action code:
   In `main.ts`, you will see that the action is run in an `async` function.
 
   ```javascript
-  import * as core from '@actions/core'
+  import * as core from '@actions/core';
   //...
 
   async function run() {
     try {
       //...
     } catch (error) {
-      core.setFailed(error.message)
+      core.setFailed(error.message);
     }
   }
   ```
