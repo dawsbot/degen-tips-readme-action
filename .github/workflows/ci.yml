@@ -21,28 +21,21 @@ jobs:
         id: checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        id: setup-node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-          cache: npm
+      - name: Setup Bun
+        id: setup-bun
+        uses: oven-sh/setup-bun@v1
 
       - name: Install Dependencies
-        id: npm-ci
-        run: npm ci
+        id: bun-install
+        run: bun install
 
       - name: Check Format
-        id: npm-format-check
-        run: npm run format:check
-
-      - name: Lint
-        id: npm-lint
-        run: npm run lint
+        id: format-check
+        run: bun run format:check
 
       - name: Test
         id: test
-        run: npm run test
+        run: bun run test
 
   test-action:
     name: GitHub Actions Test
@@ -60,7 +53,3 @@ jobs:
           FARCASTER_USERNAME: ${{ secrets.FARCASTER_USERNAME }}
           NEYNAR_API_KEY: ${{ secrets.NEYNAR_API_KEY }}
           DUNE_API_KEY: ${{ secrets.DUNE_API_KEY }}
-
-      - name: Print Output
-        id: output
-        run: echo "${{ steps.test-action.outputs.time }}"

@@ -20,21 +20,21 @@
     "actions",
     "node"
   ],
-  "exports": {
-    ".": "./dist/index.js"
-  },
   "engines": {
-    "node": ">=20"
+    "bun": ">=1"
   },
   "scripts": {
-    "bundle": "npm run format:write && npm run package",
-    "format:write": "npx prettier --write .",
-    "format:check": "npx prettier --check .",
+    "format:write": "bunx prettier --write .",
+    "format:check": "bunx prettier --check .",
     "lint": "npx eslint --fix --cache .",
-    "package": "npx ncc build src/index.ts -o dist --source-map --license licenses.txt",
-    "package:watch": "npm run package -- --watch",
-    "test": "npm run lint && npm run bundle",
-    "all": "npm run format:write && npm run lint && npm run test && npm run package"
+    "test": "bun run lint && tsc"
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "plugins": [
+      "prettier-plugin-organize-imports"
+    ]
   },
   "license": "MIT",
   "dependencies": {
@@ -47,7 +47,6 @@
     "@types/node": "^20.12.7",
     "@typescript-eslint/eslint-plugin": "^7.6.0",
     "@typescript-eslint/parser": "^7.6.0",
-    "@vercel/ncc": "^0.38.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-github": "^4.10.2",

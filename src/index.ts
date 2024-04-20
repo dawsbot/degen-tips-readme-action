@@ -2,7 +2,7 @@ import * as core from '@actions/core';
 
 import fs from 'fs';
 import replaceSection from 'replace-section';
-import { generateHtml } from './degen-sponsors/generate-html';
+import { generateHtml } from './generate-html';
 
 async function run() {
   try {
@@ -17,11 +17,12 @@ async function run() {
       duneApiKey,
     });
 
-    const readme = await fs.promises.readFile('README.md', 'utf8');
+    const FILE = core.getInput('FILE', { required: true });
+    const readme = await fs.promises.readFile(FILE, 'utf8');
     const startWith = '<!-- replace-degen-sponsors -->';
     const endWith = startWith;
     await fs.promises.writeFile(
-      'README.md',
+      FILE,
       replaceSection({
         input: readme,
         startWith,
