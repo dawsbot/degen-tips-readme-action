@@ -15,6 +15,8 @@ export async function generateHtml({
     `fetching tips from dune for https://warpcast.com/${farcasterUsername} ...`,
   );
   const tips = await fetchValidTips(farcasterUsername, duneApiKey);
+  console.log(`found ${tips.length} tips`);
+
   console.log('fetching photo urls from neynar for all sponsors...');
   const profilePhotos = await fetchProfilePhotoUrls(
     tips.map((tip) => tip.wallet_address),
