@@ -31007,10 +31007,13 @@ async function run() {
             neynarApiKey: NEYNAR_API_KEY,
             duneApiKey: DUNE_API_KEY,
         });
-        const FILE = core.getInput('FILE');
+        const FILE = core.getInput('FILE') || 'README.md';
         const readme = await external_fs_default().promises.readFile(FILE, 'utf8');
         const startWith = '<!-- replace-degen-sponsors -->';
         const endWith = startWith;
+        if (!readme.includes(startWith)) {
+            throw new Error(`File "${FILE}" missing required text "${startWith}"`);
+        }
         await external_fs_default().promises.writeFile(FILE, replace_section_default()({
             input: readme,
             startWith,
