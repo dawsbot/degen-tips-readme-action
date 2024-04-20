@@ -30996,21 +30996,21 @@ const neynarResultSchema = z.record(z.string(), z.array(z.object({
 
 async function run() {
     try {
-        const farcasterUsername = core.getInput('farcaster_username', {
+        const FARCASTER_USERNAME = core.getInput('farcaster_username', {
             required: true,
         });
-        const neynarApiKey = core.getInput('neynar_api_key', { required: true });
-        const duneApiKey = core.getInput('dune_api_key', { required: true });
+        const NEYNAR_API_KEY = core.getInput('neynar_api_key', { required: true });
+        const DUNE_API_KEY = core.getInput('dune_api_key', { required: true });
         const code = await generateHtml({
-            farcasterUsername,
-            neynarApiKey,
-            duneApiKey,
+            farcasterUsername: FARCASTER_USERNAME,
+            neynarApiKey: NEYNAR_API_KEY,
+            duneApiKey: DUNE_API_KEY,
         });
-        const FILE = core.getInput('FILE', { required: true });
-        const readme = await external_fs_default().promises.readFile(FILE, 'utf8');
+        const file = core.getInput('file', { required: true });
+        const readme = await external_fs_default().promises.readFile(file, 'utf8');
         const startWith = '<!-- replace-degen-sponsors -->';
         const endWith = startWith;
-        await external_fs_default().promises.writeFile(FILE, replace_section_default()({
+        await external_fs_default().promises.writeFile(file, replace_section_default()({
             input: readme,
             startWith,
             endWith,

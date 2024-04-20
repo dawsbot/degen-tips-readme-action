@@ -6,15 +6,15 @@ import { generateHtml } from './generate-html.js';
 
 async function run() {
   try {
-    const farcaster_username = core.getInput('farcaster_username', {
+    const FARCASTER_USERNAME = core.getInput('farcaster_username', {
       required: true,
     });
-    const neynar_api_key = core.getInput('neynar_api_key', { required: true });
-    const dune_api_key = core.getInput('dune_api_key', { required: true });
+    const NEYNAR_API_KEY = core.getInput('neynar_api_key', { required: true });
+    const DUNE_API_KEY = core.getInput('dune_api_key', { required: true });
     const code = await generateHtml({
-      farcasterUsername: farcaster_username,
-      neynarApiKey: neynar_api_key,
-      duneApiKey: dune_api_key,
+      farcasterUsername: FARCASTER_USERNAME,
+      neynarApiKey: NEYNAR_API_KEY,
+      duneApiKey: DUNE_API_KEY,
     });
 
     const file = core.getInput('file', { required: true });
