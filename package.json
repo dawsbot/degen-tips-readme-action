@@ -21,13 +21,15 @@
     "node"
   ],
   "engines": {
-    "bun": ">=1"
+    "node": ">=20"
   },
   "scripts": {
-    "format:write": "bunx prettier --write .",
-    "format:check": "bunx prettier --check .",
+    "format:write": "npx prettier --write .",
+    "format:check": "npx prettier --check .",
     "lint": "npx eslint --fix --cache .",
-    "test": "bun run lint && tsc"
+    "test": "npm run lint && npm run build",
+    "build": "npx ncc build src/index.ts -o dist --source-map --license licenses.txt",
+    "all": "npm run format:check && npm run test && npm run build"
   },
   "prettier": {
     "semi": true,
@@ -47,6 +49,7 @@
     "@types/node": "^20.12.7",
     "@typescript-eslint/eslint-plugin": "^7.6.0",
     "@typescript-eslint/parser": "^7.6.0",
+    "@vercel/ncc": "^0.38.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-github": "^4.10.2",

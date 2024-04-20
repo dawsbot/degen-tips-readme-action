@@ -2,7 +2,7 @@ import * as core from '@actions/core';
 
 import fs from 'fs';
 import replaceSection from 'replace-section';
-import { generateHtml } from './generate-html';
+import { generateHtml } from './generate-html.js';
 
 async function run() {
   try {
