@@ -46,6 +46,6 @@ jobs:
         id: test-action
         uses: ./
         with:
-          farcaster_username: ${{ secrets.farcaster_username }}
-          neynar_api_key: ${{ secrets.neynar_api_key }}
-          dune_api_key: ${{ secrets.dune_api_key }}
+          farcaster_username: ${{ secrets.FARCASTER_USERNAME }}
+          neynar_api_key: ${{ secrets.NEYNAR_API_KEY }}
+          dune_api_key: ${{ secrets.DUNE_API_KEY }}
