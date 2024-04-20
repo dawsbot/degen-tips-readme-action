@@ -18,7 +18,7 @@ async function run() {
       duneApiKey: DUNE_API_KEY,
     });
 
-    const FILE = core.getInput('FILE');
+    const FILE = core.getInput('FILE') || 'README.md';
     const readme = await fs.promises.readFile(FILE, 'utf8');
     const startWith = '<!-- replace-degen-sponsors -->';
     const endWith = startWith;
