@@ -21,28 +21,17 @@ jobs:
         id: checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        id: setup-node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-          cache: npm
-
       - name: Install Dependencies
         id: npm-ci
         run: npm ci
 
       - name: Check Format
-        id: npm-format-check
+        id: format-check
         run: npm run format:check
 
-      - name: Lint
-        id: npm-lint
-        run: npm run lint
-
       - name: Test
-        id: npm-ci-test
-        run: npm run ci-test
+        id: test
+        run: npm run test
 
   test-action:
     name: GitHub Actions Test
@@ -57,8 +46,6 @@ jobs:
         id: test-action
         uses: ./
         with:
-          milliseconds: 2000
-
-      - name: Print Output
-        id: output
-        run: echo "${{ steps.test-action.outputs.time }}"
+          FARCASTER_USERNAME: ${{ vars.FARCASTER_USERNAME }}
+          NEYNAR_API_KEY: ${{ secrets.NEYNAR_API_KEY }}
+          DUNE_API_KEY: ${{ secrets.DUNE_API_KEY }}

@@ -1,51 +1,24 @@
-# Create a GitHub Action Using TypeScript
+# DEGEN Tips Readme Action
 
-[![GitHub Super-Linter](https://github.com/actions/typescript-action/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
-![CI](https://github.com/actions/typescript-action/actions/workflows/ci.yml/badge.svg)
-[![Check dist/](https://github.com/actions/typescript-action/actions/workflows/check-dist.yml/badge.svg)](https://github.com/actions/typescript-action/actions/workflows/check-dist.yml)
-[![CodeQL](https://github.com/actions/typescript-action/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/actions/typescript-action/actions/workflows/codeql-analysis.yml)
-[![Coverage](./badges/coverage.svg)](./badges/coverage.svg)
+> Add this to any repo you want to thank you DEGEN sponsors from Farcaster! It looks like this 👇
 
-Use this template to bootstrap the creation of a TypeScript action. :rocket:
+<!-- replace-degen-sponsors --><!-- replace-degen-sponsors -->
 
-This template includes compilation support, tests, a validation workflow,
-publishing, and versioning guidance.
+#### Required Setup
 
-If you are new, there's also a simpler introduction in the
-[Hello world JavaScript action repository](https://github.com/actions/hello-world-javascript-action).
+The following options must be configured.
 
-## Create Your Own Action
+| Key   | Value Information                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Type   | Required |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------- |
+| `PAT` | You must provide the action with a Personal Access Token (PAT) with the `read:user` and `read:org` permission scope and store it in the `secrets / with` menu **as a secret**. This should be generated from the account or organization that receives sponsorship, and depending on your use case you may need to provide additional scopes. [Learn more about creating and using encrypted secrets here](https://docs.github.com/en/actions/reference/encrypted-secrets). | `with` | **Yes**  |
 
-To create your own action, you can use this repository as a template! Just
-follow the below instructions:
+#### Optional Choices
 
-1. Click the **Use this template** button at the top of the repository
-1. Select **Create a new repository**
-1. Select an owner and name for your new repository
-1. Click **Create repository**
-1. Clone your new repository
+| Key    | Value Information                                                                                                                                       | Type   | Required |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------- |
+| `file` | This should point to the file that you're generating, for example `README.md` or `path/to/CREDITS.md`. Defaults to `README.md` if no value is provided. | `with` | **Yes**  |
 
-> [!IMPORTANT]
->
-> Make sure to remove or update the [`CODEOWNERS`](./CODEOWNERS) file! For
-> details on how to use this file, see
-> [About code owners](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners).
-
-## Initial Setup
-
-After you've cloned the repository to your local machine or codespace, you'll
-need to perform some initial setup steps before you can develop your action.
-
-> [!NOTE]
->
-> You'll need to have a reasonably modern version of
-> [Node.js](https://nodejs.org) handy (20.x or later should work!). If you are
-> using a version manager like [`nodenv`](https://github.com/nodenv/nodenv) or
-> [`nvm`](https://github.com/nvm-sh/nvm), this template has a `.node-version`
-> file at the root of the repository that will be used to automatically switch
-> to the correct version when you `cd` into the repository. Additionally, this
-> `.node-version` file is used by GitHub Actions in any `actions/setup-node`
-> actions.
+## Contributing
 
 1. :hammer_and_wrench: Install the dependencies
 
@@ -56,7 +29,7 @@ need to perform some initial setup steps before you can develop your action.
 1. :building_construction: Package the TypeScript for distribution
 
    ```bash
-   npm run bundle
+   npm run build
    ```
 
 1. :white_check_mark: Run the tests
@@ -93,14 +66,14 @@ There are a few things to keep in mind when writing your action code:
   In `main.ts`, you will see that the action is run in an `async` function.
 
   ```javascript
-  import * as core from '@actions/core'
+  import * as core from '@actions/core';
   //...
 
   async function run() {
     try {
       //...
     } catch (error) {
-      core.setFailed(error.message)
+      core.setFailed(error.message);
     }
   }
   ```
@@ -117,19 +90,18 @@ So, what are you waiting for? Go ahead and start customizing your action!
    ```
 
 1. Replace the contents of `src/` with your action code
-1. Add tests to `__tests__/` for your source code
 1. Format, test, and build the action
 
    ```bash
    npm run all
    ```
 
-   > This step is important! It will run [`ncc`](https://github.com/vercel/ncc)
-   > to build the final JavaScript action code with all dependencies included.
-   > If you do not run this step, your action will not work correctly when it is
-   > used in a workflow. This step also includes the `--license` option for
-   > `ncc`, which will create a license file for all of the production node
-   > modules used in your project.
+> This step is important! It will run [`ncc`](https://github.com/vercel/ncc)
+> to build the final JavaScript action code with all dependencies included.
+> If you do not run this step, your action will not work correctly when it is
+> used in a workflow. This step also includes the `--license` option for
+> `ncc`, which will create a license file for all of the production node
+> modules used in your project.
 
 1. Commit your changes
 

@@ -1,23 +1,27 @@
-name: 'The name of your action here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'degen-tips-readme-action'
+description: 'GH Action to automatically add DEGEN tippers from farcaster to your readme'
+author: 'dawsbot'
 
 # Add your action's branding here. This will appear on the GitHub Marketplace.
 branding:
-  icon: 'heart'
-  color: 'red'
+  icon: 'tophat'
+  color: 'black'
 
 # Define your inputs here.
 inputs:
-  milliseconds:
-    description: 'Your input description here'
+  FARCASTER_USERNAME:
+    description: 'Farcaster username'
     required: true
-    default: '1000'
-
-# Define your outputs here.
-outputs:
-  time:
-    description: 'Your output description here'
+  NEYNAR_API_KEY:
+    description: 'Neynar API key'
+    required: true
+  DUNE_API_KEY:
+    description: 'Dune API key'
+    required: true
+  FILE:
+    description: 'File you want to place generated html into'
+    required: true
+    default: 'README.md'
 
 runs:
   using: node20
