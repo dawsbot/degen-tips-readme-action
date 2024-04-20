@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
+      - name: Checkout
         id: checkout
         uses: actions/checkout@v4
 
