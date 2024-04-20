@@ -42,7 +42,7 @@ export const fetchValidTips = async (
 ) => {
   const dune = new Dune(duneApiKey);
   const execute = await dune.execute(QUERY_ID, {
-    params: { farcasterUsername },
+    params: { username: farcasterUsername },
   });
   let state: string;
   do {

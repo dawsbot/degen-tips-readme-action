@@ -30890,7 +30890,7 @@ function sleep(ms) {
 const fetchValidTips = async (farcasterUsername, duneApiKey) => {
     const dune = new Dune(duneApiKey);
     const execute = await dune.execute(QUERY_ID, {
-        params: { farcasterUsername },
+        params: { username: farcasterUsername },
     });
     let state;
     do {
@@ -31006,7 +31006,7 @@ async function run() {
             neynarApiKey: NEYNAR_API_KEY,
             duneApiKey: DUNE_API_KEY,
         });
-        const file = core.getInput('file', { required: true });
+        const file = core.getInput('file');
         const readme = await external_fs_default().promises.readFile(file, 'utf8');
         const startWith = '<!-- replace-degen-sponsors -->';
         const endWith = startWith;
