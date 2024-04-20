@@ -22,6 +22,9 @@ async function run() {
     const readme = await fs.promises.readFile(FILE, 'utf8');
     const startWith = '<!-- replace-degen-sponsors -->';
     const endWith = startWith;
+    if (!readme.includes(startWith)) {
+      throw new Error(`File "${FILE}" missing required text "${startWith}"`);
+    }
     await fs.promises.writeFile(
       FILE,
       replaceSection({
