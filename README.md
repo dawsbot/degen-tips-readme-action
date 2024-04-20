@@ -27,9 +27,19 @@ This repo made possible by all my Farcaster tippers 👇
 
 <!-- replace-degen-sponsors -->
 
-#### Required Setup
+## Setup
 
-The following options must be configured.
+1. Place this in your readme the images of your tippers will be injected between automatically: `<!-- replace-degen-sponsors --><!-- replace-degen-sponsors -->`
+
+1. Add or edit your github action to include these four lines:
+
+![](https://github.com/dawsbot/dawsbot/blob/192c0bc4657b8fcbe018b9874c9c4b252412819a/.github/workflows/sponsors.yml#L13-L17)
+
+1. Run the action! ✨
+
+#### Required Choices
+
+1. The following options must be configured.
 
 | Key                  | Value Information                                                | Type   | Required |
 | -------------------- | ---------------------------------------------------------------- | ------ | -------- |
