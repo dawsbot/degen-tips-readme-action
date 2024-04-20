@@ -29,9 +29,17 @@ This repo made possible by all my Farcaster tippers 👇
 
 1. Add or edit your github action to include these four lines:
 
-https://github.com/dawsbot/dawsbot/blob/192c0bc4657b8fcbe018b9874c9c4b252412819a/.github/workflows/sponsors.yml#L13-L17
+```yaml
+- uses: dawsbot/degen-tips-readme-action@v0.2.1
+  with:
+    FARCASTER_USERNAME: ${{ secrets.FARCASTER_USERNAME }}
+    NEYNAR_API_KEY: ${{ secrets.NEYNAR_API_KEY }}
+    DUNE_API_KEY: ${{ secrets.DUNE_API_KEY }}
+```
 
-1. Run the action! ✨
+1.  Add those three variables to your [GitHub actions secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)
+
+1.  Run the action! ✨
 
 #### Required Choices
 
