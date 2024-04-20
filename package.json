@@ -31,7 +31,7 @@
     "format:check": "npx prettier --check .",
     "lint": "npx eslint --fix --cache .",
     "test": "npm run lint && npm run build",
-    "build": "npx ncc build src/index.ts -o dist --source-map --license licenses.txt",
+    "build": "rm -rf dist && npx ncc build src/index.ts -o dist --source-map --license licenses.txt",
     "all": "npm run format:check && npm run test && npm run build"
   },
   "prettier": {

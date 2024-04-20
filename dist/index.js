@@ -30874,6 +30874,7 @@ var z = /*#__PURE__*/Object.freeze({
 async function generateHtml({ farcasterUsername, neynarApiKey, duneApiKey, }) {
     console.log(`fetching tips from dune for https://warpcast.com/${farcasterUsername} ...`);
     const tips = await fetchValidTips(farcasterUsername, duneApiKey);
+    console.log(`found ${tips.length} tips`);
     console.log('fetching photo urls from neynar for all sponsors...');
     const profilePhotos = await fetchProfilePhotoUrls(tips.map((tip) => tip.wallet_address), neynarApiKey);
     return tips
@@ -31006,11 +31007,11 @@ async function run() {
             neynarApiKey: NEYNAR_API_KEY,
             duneApiKey: DUNE_API_KEY,
         });
-        const file = core.getInput('file');
-        const readme = await external_fs_default().promises.readFile(file, 'utf8');
+        const FILE = core.getInput('FILE');
+        const readme = await external_fs_default().promises.readFile(FILE, 'utf8');
         const startWith = '<!-- replace-degen-sponsors -->';
         const endWith = startWith;
-        await external_fs_default().promises.writeFile(file, replace_section_default()({
+        await external_fs_default().promises.writeFile(FILE, replace_section_default()({
             input: readme,
             startWith,
             endWith,

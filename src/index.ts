@@ -11,18 +11,19 @@ async function run() {
     });
     const NEYNAR_API_KEY = core.getInput('NEYNAR_API_KEY', { required: true });
     const DUNE_API_KEY = core.getInput('DUNE_API_KEY', { required: true });
+
     const code = await generateHtml({
       farcasterUsername: FARCASTER_USERNAME,
       neynarApiKey: NEYNAR_API_KEY,
       duneApiKey: DUNE_API_KEY,
     });
 
-    const file = core.getInput('file');
-    const readme = await fs.promises.readFile(file, 'utf8');
+    const FILE = core.getInput('FILE') || 'README.md';
+    const readme = await fs.promises.readFile(FILE, 'utf8');
     const startWith = '<!-- replace-degen-sponsors -->';
     const endWith = startWith;
     await fs.promises.writeFile(
-      file,
+      FILE,
       replaceSection({
         input: readme,
         startWith,
