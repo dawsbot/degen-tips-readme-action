@@ -20,10 +20,6 @@ This repo made possible by all my Farcaster tippers 👇
 <a href="https://warpcast.com/charliemaster"><img src="https://i.imgur.com/YRGM4fL.jpg" width="60px" alt="Moneyman🎩🔮🍖💵🥃↑" /></a>
 <a href="https://warpcast.com/jereld"><img src="https://i.imgur.com/VbtLWtG.gif" width="60px" alt="jereld" /></a>
 <a href="https://warpcast.com/h3lx.eth"><img src="https://occb0ofnixhvqbrv.public.blob.vercel-storage.com/images/clut88yy104ho14apaq05u9jr.png" width="60px" alt="HΞLiX 🧙‍♂️🎩" /></a>
-<a href="https://warpcast.com/alexastro"><img src="https://i.imgur.com/dNpXbZg.png" width="60px" alt="Alex Astro" /></a>
-<a href="https://warpcast.com/lolclark"><img src="https://i.imgur.com/imQlhPL.gif" width="60px" alt="Lol Clark 🍪" /></a>
-<a href="https://warpcast.com/amar.eth"><img src="https://i.imgur.com/Q30JRYM.gif" width="60px" alt="Amar.eth 🎩 ↑ " /></a>
-<a href="https://warpcast.com/ngan300713"><img src="https://i.imgur.com/2BL3qQX.jpg" width="60px" alt="Ngan 🔮 🎩 🍖 🧀" /></a>
 
 <!-- replace-degen-sponsors -->
 
@@ -33,7 +29,7 @@ This repo made possible by all my Farcaster tippers 👇
 
 1. Add or edit your github action to include these four lines:
 
-![](https://github.com/dawsbot/dawsbot/blob/192c0bc4657b8fcbe018b9874c9c4b252412819a/.github/workflows/sponsors.yml#L13-L17)
+https://github.com/dawsbot/dawsbot/blob/192c0bc4657b8fcbe018b9874c9c4b252412819a/.github/workflows/sponsors.yml#L13-L17
 
 1. Run the action! ✨
 
