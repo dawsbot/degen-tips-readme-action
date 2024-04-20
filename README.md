@@ -29,7 +29,7 @@ The following options must be configured.
 1. :building_construction: Package the TypeScript for distribution
 
    ```bash
-   npm run bundle
+   npm run build
    ```
 
 1. :white_check_mark: Run the tests
