@@ -6,23 +6,23 @@ import { generateHtml } from './generate-html.js';
 
 async function run() {
   try {
-    const FARCASTER_USERNAME = core.getInput('FARCASTER_USERNAME', {
+    const farcaster_username = core.getInput('farcaster_username', {
       required: true,
     });
-    const NEYNAR_API_KEY = core.getInput('NEYNAR_API_KEY', { required: true });
-    const DUNE_API_KEY = core.getInput('DUNE_API_KEY', { required: true });
+    const neynar_api_key = core.getInput('neynar_api_key', { required: true });
+    const dune_api_key = core.getInput('dune_api_key', { required: true });
     const code = await generateHtml({
-      farcasterUsername: FARCASTER_USERNAME,
-      neynarApiKey: NEYNAR_API_KEY,
-      duneApiKey: DUNE_API_KEY,
+      farcasterUsername: farcaster_username,
+      neynarApiKey: neynar_api_key,
+      duneApiKey: dune_api_key,
     });
 
-    const FILE = core.getInput('FILE', { required: true });
-    const readme = await fs.promises.readFile(FILE, 'utf8');
+    const file = core.getInput('file', { required: true });
+    const readme = await fs.promises.readFile(file, 'utf8');
     const startWith = '<!-- replace-degen-sponsors -->';
     const endWith = startWith;
     await fs.promises.writeFile(
-      FILE,
+      file,
       replaceSection({
         input: readme,
         startWith,
