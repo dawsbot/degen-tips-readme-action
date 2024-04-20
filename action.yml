@@ -1,6 +1,5 @@
 name: 'degen-tips-readme-action'
-description:
-  'GH Action to automatically add DEGEN tippers from farcaster to your readme'
+description: 'GH Action to automatically add DEGEN tippers from farcaster to your readme'
 author: 'dawsbot'
 
 # Add your action's branding here. This will appear on the GitHub Marketplace.
@@ -10,16 +9,16 @@ branding:
 
 # Define your inputs here.
 inputs:
-farcaster_username:
+  FARCASTER_USERNAME:
     description: 'Farcaster username'
     required: true
-  neynar_api_key:
+  NEYNAR_API_KEY:
     description: 'Neynar API key'
     required: true
-  dune_api_key:
+  DUNE_API_KEY:
     description: 'Dune API key'
     required: true
-  file:
+  FILE:
     description: 'File you want to place generated html into'
     required: true
     default: 'README.md'
