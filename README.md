@@ -30,7 +30,7 @@ This repo made possible by all my Farcaster tippers 👇
 1. Add or edit your github action to include these four lines:
 
 ```yaml
-- uses: dawsbot/degen-tips-readme-action@v0.2.1
+- uses: dawsbot/degen-tips-readme-action@v1
   with:
     FARCASTER_USERNAME: ${{ secrets.FARCASTER_USERNAME }}
     NEYNAR_API_KEY: ${{ secrets.NEYNAR_API_KEY }}
