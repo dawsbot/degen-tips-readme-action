@@ -23,6 +23,9 @@
   "engines": {
     "node": ">=20"
   },
+  "exports": {
+    ".": "./dist/index.js"
+  },
   "scripts": {
     "format:write": "npx prettier --write .",
     "format:check": "npx prettier --check .",
