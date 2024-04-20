@@ -2,7 +2,10 @@
 
 > Add this to any repo you want to thank you DEGEN sponsors from Farcaster! It looks like this 👇
 
+This repo made possible by all my Farcaster tippers 👇
+
 <!-- replace-degen-sponsors -->
+
 <a href="https://warpcast.com/greg"><img src="https://i.seadn.io/gae/YsASemS2qwPJK2yI9fmN8HX1-DeIDy9EQxX4KsRk9rkniwn9A7xUyMu_vKR75Oxrs8QAKfIjqdmf6Aw9A9fsehJHWSz2LiNpnV_TPQ?w=500&auto=format" width="60px" alt="Greg" /></a>
 <a href="https://warpcast.com/nbragg"><img src="https://i.imgur.com/BacP8dn.jpg" width="60px" alt="Noah Bragg 🐟" /></a>
 <a href="https://warpcast.com/polluterofminds"><img src="https://i.seadn.io/gae/lhGgt7yK1JiBVYz_HBxcAmYLRtP03aw5xKX4FgmFT9Ai7kLD5egzlLvb0lkuRNl28shtjr07DC8IHzLUkTqlWUMndUzC9R5_MSxH3g?w=500&auto=format" width="60px" alt="Justin Hunter" /></a>
