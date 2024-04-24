@@ -9,12 +9,10 @@ async function run() {
     const FARCASTER_USERNAME = core.getInput('FARCASTER_USERNAME', {
       required: true,
     });
-    const NEYNAR_API_KEY = core.getInput('NEYNAR_API_KEY', { required: true });
     const DUNE_API_KEY = core.getInput('DUNE_API_KEY', { required: true });
 
     const code = await generateHtml({
       farcasterUsername: FARCASTER_USERNAME,
-      neynarApiKey: NEYNAR_API_KEY,
       duneApiKey: DUNE_API_KEY,
     });
 

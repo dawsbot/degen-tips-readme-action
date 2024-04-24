@@ -30871,15 +30871,17 @@ var z = /*#__PURE__*/Object.freeze({
 
 
 
-async function generateHtml({ farcasterUsername, neynarApiKey, duneApiKey, }) {
+async function generateHtml({ farcasterUsername, duneApiKey, }) {
     console.log(`fetching tips from dune for https://warpcast.com/${farcasterUsername} ...`);
     const tips = await fetchValidTips(farcasterUsername, duneApiKey);
     console.log(`found ${tips.length} tips`);
-    console.log('fetching photo urls from neynar for all sponsors...');
-    const profilePhotos = await fetchProfilePhotoUrls(tips.map((tip) => tip.wallet_address), neynarApiKey);
+    const fids = tips.map((tip) => tip.donor_fid);
+    console.log(`fetching photo urls from hub for all sponsors with fids: ${fids}`);
+    const profilePhotos = await fetchProfilePhotoUrls(fids);
+    console.dir({ profilePhotos });
     return tips
-        .map((tip) => {
-        return `<a href="https://warpcast.com/${tip.fname}"><img src="${profilePhotos[tip.wallet_address]}" width="60px" alt="${tip.display_name}" /></a>\n`;
+        .map((tip, index) => {
+        return `<a href="https://warpcast.com/${tip.fname}"><img src="${profilePhotos[index]}" width="60px" alt="${tip.display_name}" /></a>\n`;
     })
         .join('');
 }
@@ -30911,41 +30913,30 @@ const fetchValidTips = async (farcasterUsername, duneApiKey) => {
         return objectOmit(validTip, 'valid_tip');
     });
     const totalTipAmountByRecipient = validTips.reduce((acc, tip) => {
-        const recipientAddress = tip.wallet_address;
-        if (!acc[recipientAddress]) {
-            acc[recipientAddress] = 0;
+        const recipientFid = tip.donor_fid;
+        if (!acc[recipientFid]) {
+            acc[recipientFid] = 0;
         }
-        acc[recipientAddress] += tip.actual_tip_amount;
+        acc[recipientFid] += tip.actual_tip_amount;
         return acc;
     }, {});
     validTips = validTips
         .sort((validTipA, validTipB) => {
-        return (totalTipAmountByRecipient[validTipB.wallet_address] -
-            totalTipAmountByRecipient[validTipA.wallet_address]);
+        return (totalTipAmountByRecipient[validTipB.donor_fid] -
+            totalTipAmountByRecipient[validTipA.donor_fid]);
     })
         .filter((tip) => {
-        // remove tips which have a duplicate wallet_address
-        return (tip.wallet_address !==
-            validTips[validTips.indexOf(tip) - 1]?.wallet_address);
+        // remove tips which have a duplicate donor_fid
+        return tip.donor_fid !== validTips[validTips.indexOf(tip) - 1]?.donor_fid;
     });
     return validTips;
 };
-async function fetchProfilePhotoUrls(addresses, neynarApiKey) {
-    const neynarApiResponse = await fetch(`https://api.neynar.com/v2/farcaster/user/bulk-by-address?addresses=${addresses.join('%2C')}`, {
-        headers: {
-            api_key: neynarApiKey,
-        },
-    })
+async function fetchProfilePhotoUrls(fids) {
+    const pfps = await Promise.all(fids.map((fid) => fetch(`https://nemes.farcaster.xyz:2281/v1/userDataByFid?fid=${fid}&user_data_type=USER_DATA_TYPE_PFP`)
         .then((res) => res.json())
-        .then((res) => neynarResultSchema.parse(res));
-    const addressImageMapping = {};
-    const DEFAULT_PFP = 'https://assets.coingecko.com/coins/images/34515/large/android-chrome-512x512.png';
-    Object.entries(neynarApiResponse).forEach(([ethAddress, values]) => {
-        const pfpUrl = values.find((value) => typeof value.pfp_url === 'string')?.pfp_url ||
-            DEFAULT_PFP;
-        addressImageMapping[ethAddress] = pfpUrl;
-    });
-    return addressImageMapping;
+        .then((res) => hubProfileSchema.parse(res))
+        .then((data) => data.data.userDataBody.value)));
+    return pfps;
 }
 const duneResultSchema = z.object({
     rows: z.array(z.object({
@@ -30958,7 +30949,7 @@ const duneResultSchema = z.object({
         //   day: z.string(),
         display_name: z.string(),
         //   donated_amount: z.number(),
-        //   donor_fid: z.number(),
+        donor_fid: z.number(),
         //   donor_tip_allowance: z.number(),
         //   event_day: z.string(),
         fname: z.string(),
@@ -30983,12 +30974,17 @@ const duneResultSchema = z.object({
         timestamp: z.string(),
         //   tip_amount: z.number(),
         valid_tip: z.string(),
-        wallet_address: z.string(),
+        // wallet_address: z.string(),
     })),
 });
-const neynarResultSchema = z.record(z.string(), z.array(z.object({
-    pfp_url: z.union([z.string(), z["null"]()]),
-})));
+const hubProfileSchema = z.object({
+    data: z.object({
+        type: z.string(),
+        timestamp: z.number(),
+        network: z.string(),
+        userDataBody: z.object({ type: z.string(), value: z.string() }),
+    }),
+});
 
 ;// CONCATENATED MODULE: ./src/index.ts
 
@@ -30997,14 +30993,14 @@ const neynarResultSchema = z.record(z.string(), z.array(z.object({
 
 async function run() {
     try {
-        const FARCASTER_USERNAME = core.getInput('FARCASTER_USERNAME', {
-            required: true,
-        });
-        const NEYNAR_API_KEY = core.getInput('NEYNAR_API_KEY', { required: true });
-        const DUNE_API_KEY = core.getInput('DUNE_API_KEY', { required: true });
+        const FARCASTER_USERNAME = 'daws';
+        const DUNE_API_KEY = '4CaOQuz89dZ0VGHuH12t0MengKaUfcFQ';
+        // const FARCASTER_USERNAME = core.getInput('FARCASTER_USERNAME', {
+        //   required: true,
+        // });
+        // const DUNE_API_KEY = core.getInput('DUNE_API_KEY', { required: true });
         const code = await generateHtml({
             farcasterUsername: FARCASTER_USERNAME,
-            neynarApiKey: NEYNAR_API_KEY,
             duneApiKey: DUNE_API_KEY,
         });
         const FILE = core.getInput('FILE') || 'README.md';
