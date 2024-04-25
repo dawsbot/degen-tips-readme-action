@@ -17,7 +17,7 @@ export async function generateHtml({
 
   const fids = tips.map((tip) => tip.donor_fid);
   console.log(
-    `fetching photo urls from hub for all sponsors with fids: ${fids}`,
+    `fetching photo urls from hub for all sponsors with fids: ${fids.toString()}`,
   );
   const profilePhotos = await fetchProfilePhotoUrls(fids);
   console.dir({ profilePhotos });

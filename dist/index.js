@@ -30876,7 +30876,7 @@ async function generateHtml({ farcasterUsername, duneApiKey, }) {
     const tips = await fetchValidTips(farcasterUsername, duneApiKey);
     console.log(`found ${tips.length} tips`);
     const fids = tips.map((tip) => tip.donor_fid);
-    console.log(`fetching photo urls from hub for all sponsors with fids: ${fids}`);
+    console.log(`fetching photo urls from hub for all sponsors with fids: ${fids.toString()}`);
     const profilePhotos = await fetchProfilePhotoUrls(fids);
     console.dir({ profilePhotos });
     return tips
@@ -30993,12 +30993,10 @@ const hubProfileSchema = z.object({
 
 async function run() {
     try {
-        const FARCASTER_USERNAME = 'daws';
-        const DUNE_API_KEY = '4CaOQuz89dZ0VGHuH12t0MengKaUfcFQ';
-        // const FARCASTER_USERNAME = core.getInput('FARCASTER_USERNAME', {
-        //   required: true,
-        // });
-        // const DUNE_API_KEY = core.getInput('DUNE_API_KEY', { required: true });
+        const FARCASTER_USERNAME = core.getInput('FARCASTER_USERNAME', {
+            required: true,
+        });
+        const DUNE_API_KEY = core.getInput('DUNE_API_KEY', { required: true });
         const code = await generateHtml({
             farcasterUsername: FARCASTER_USERNAME,
             duneApiKey: DUNE_API_KEY,
