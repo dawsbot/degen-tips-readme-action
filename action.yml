@@ -12,9 +12,6 @@ inputs:
   FARCASTER_USERNAME:
     description: 'Farcaster username'
     required: true
-  NEYNAR_API_KEY:
-    description: 'Neynar API key'
-    required: true
   DUNE_API_KEY:
     description: 'Dune API key'
     required: true

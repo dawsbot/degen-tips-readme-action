@@ -1,22 +1,67 @@
 import { z } from 'zod';
-export declare function generateHtml({ farcasterUsername, neynarApiKey, duneApiKey, }: {
+export declare function generateHtml({ farcasterUsername, duneApiKey, }: {
     farcasterUsername: string;
-    neynarApiKey: string;
     duneApiKey: string;
 }): Promise<string>;
 export declare const fetchValidTips: (farcasterUsername: string, duneApiKey: string) => Promise<Omit<{
     actual_tip_amount: number;
     display_name: string;
+    donor_fid: number;
     fname: string;
     timestamp: string;
     valid_tip: string;
-    wallet_address: string;
 }, "valid_tip">[]>;
-export declare function fetchProfilePhotoUrls(addresses: string[], neynarApiKey: string): Promise<Record<string, string>>;
-export declare const neynarResultSchema: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodObject<{
-    pfp_url: z.ZodUnion<[z.ZodString, z.ZodNull]>;
+export declare function fetchProfilePhotoUrls(fids: number[]): Promise<string[]>;
+export declare const hubProfileSchema: z.ZodObject<{
+    data: z.ZodObject<{
+        type: z.ZodString;
+        timestamp: z.ZodNumber;
+        network: z.ZodString;
+        userDataBody: z.ZodObject<{
+            type: z.ZodString;
+            value: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            value: string;
+            type: string;
+        }, {
+            value: string;
+            type: string;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        type: string;
+        timestamp: number;
+        network: string;
+        userDataBody: {
+            value: string;
+            type: string;
+        };
+    }, {
+        type: string;
+        timestamp: number;
+        network: string;
+        userDataBody: {
+            value: string;
+            type: string;
+        };
+    }>;
 }, "strip", z.ZodTypeAny, {
-    pfp_url: string | null;
+    data: {
+        type: string;
+        timestamp: number;
+        network: string;
+        userDataBody: {
+            value: string;
+            type: string;
+        };
+    };
 }, {
-    pfp_url: string | null;
-}>, "many">>;
+    data: {
+        type: string;
+        timestamp: number;
+        network: string;
+        userDataBody: {
+            value: string;
+            type: string;
+        };
+    };
+}>;
