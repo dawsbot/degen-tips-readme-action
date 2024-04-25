@@ -47,5 +47,4 @@ jobs:
         uses: ./
         with:
           FARCASTER_USERNAME: ${{ vars.FARCASTER_USERNAME }}
-          NEYNAR_API_KEY: ${{ secrets.NEYNAR_API_KEY }}
           DUNE_API_KEY: ${{ secrets.DUNE_API_KEY }}
